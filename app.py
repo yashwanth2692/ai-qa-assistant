@@ -3,7 +3,7 @@ import requests
 import re
 from bs4 import BeautifulSoup
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_URL = "http://host.docker.internal:11434/api/generate"
 MODEL_NAME = "phi3:mini"
 
 

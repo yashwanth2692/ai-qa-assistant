@@ -54,7 +54,7 @@ def analyze_website(url):
 # -------------------------------
 # PROMPT BUILDERS
 # -------------------------------
-def generate_prompt(url, inputs, buttons):
+def build_playwright_prompt(url, inputs, buttons):
 
     return f"""
 You are a senior QA engineer.

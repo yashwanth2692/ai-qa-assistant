@@ -116,16 +116,23 @@ def call_ai(prompt):
                 "stream": False,
                 "options": {
                     "temperature": 0.2,
-                    "num_predict": 120
+                    "num_predict": 400
                 }
             },
             timeout=300
         )
 
-        raw = response.text.splitlines()[0]   # take first JSON line
-        result = json.loads(raw)
+        output = ""
 
-        return result.get("response", "No response from AI")
+        for line in response.text.splitlines():
+            try:
+                data = json.loads(line)
+                if "response" in data:
+                    output += data["response"]
+            except:
+                pass
+
+        return output
 
     except Exception as e:
         return f"AI request failed: {str(e)}"

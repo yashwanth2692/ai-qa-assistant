@@ -54,24 +54,27 @@ def analyze_website(url):
 # -------------------------------
 # PROMPT BUILDERS
 # -------------------------------
-def build_testcase_prompt(url, inputs, buttons):
+def generate_prompt(url, inputs, buttons):
 
     return f"""
 You are a senior QA engineer.
 
-Generate exactly 5 LOGIN test cases.
+Generate EXACTLY 5 manual test cases for the webpage.
 
 URL: {url}
 Inputs: {inputs}
 Buttons: {buttons}
 
-Return ONLY a table:
+Return ONLY this table format:
 
 Test Case ID | Scenario | Steps | Expected Result
 
 Rules:
-- Use IDs TC_LOGIN_01 to TC_LOGIN_05
-- Each test case must be exactly one line
+- Generate EXACTLY 5 test cases
+- Do not repeat scenarios
+- Do not generate more than 5 rows
+- Steps must be short and numbered
+- Expected result must describe system behavior
 - Do not include explanations
 """
 
@@ -116,7 +119,7 @@ def call_ai(prompt):
                 "stream": False,
                 "options": {
                     "temperature": 0.2,
-                    "num_predict": 400
+                    "num_predict": 80
                 }
             },
             timeout=300

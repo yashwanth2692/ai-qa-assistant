@@ -57,31 +57,6 @@ def analyze_website(url):
 def build_playwright_prompt(url, inputs, buttons):
 
     return f"""
-You are a senior QA engineer.
-
-Generate EXACTLY 5 manual test cases for the webpage.
-
-URL: {url}
-Inputs: {inputs}
-Buttons: {buttons}
-
-Return ONLY this table format:
-
-Test Case ID | Scenario | Steps | Expected Result
-
-Rules:
-- Generate EXACTLY 5 test cases
-- Do not repeat scenarios
-- Do not generate more than 5 rows
-- Steps must be short and numbered
-- Expected result must describe system behavior
-- Do not include explanations
-"""
-
-
-def build_playwright_prompt(url, inputs, buttons):
-
-    return f"""
 You are an automation engineer.
 
 Generate a Playwright test script.
@@ -91,13 +66,16 @@ URL: {url}
 Inputs: {inputs}
 Buttons: {buttons}
 
+Return ONLY a table with columns:
+
+Test Case ID | Scenario | Steps | Expected Result
+
 Rules:
-- Use Playwright JavaScript syntax
-- Open browser
-- Navigate to URL
-- Fill detected inputs
-- Click login button
+- Generate exactly 5 test cases
+- Steps must be numbered
 - Do not include explanations
+- Do not include HTML tags
+- Expected result must clearly describe system behavior
 """
 
 

@@ -4,7 +4,7 @@ import re
 from bs4 import BeautifulSoup
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "tinyllama"
+MODEL_NAME = "phi3:mini"
 
 
 # -------------------------------
@@ -93,8 +93,9 @@ def call_ai(prompt):
                 "prompt": prompt,
                 "stream": False,
                 "options": {
-                    "temperature": 0.2,
-                    "num_predict": 80
+                    "temperature": 0.1,
+                    "num_predict": 120,
+                    "top_p": 0.9
                 }
             },
             timeout=300

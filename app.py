@@ -54,7 +54,7 @@ def analyze_website(url):
 # -------------------------------
 # PROMPT BUILDERS
 # -------------------------------
-def build_playwright_prompt(url, inputs, buttons):
+def build_testcase_prompt(url, inputs, buttons):
 
     return f"""
 You are an automation engineer.
@@ -157,7 +157,7 @@ if url:
 
         if st.button("Generate Playwright Script"):
 
-            prompt = build_playwright_prompt(url, inputs, buttons)
+            prompt = build_testcase_prompt(url, inputs, buttons)
 
             with st.spinner("Generating automation script..."):
 

@@ -101,6 +101,9 @@ Rules:
 # -------------------------------
 # AI SERVICE
 # -------------------------------
+import json
+
+
 def call_ai(prompt):
 
     try:
@@ -110,7 +113,7 @@ def call_ai(prompt):
             json={
                 "model": MODEL_NAME,
                 "prompt": prompt,
-                "stream": True,
+                "stream": False,
                 "options": {
                     "temperature": 0.2,
                     "num_predict": 120
@@ -119,19 +122,13 @@ def call_ai(prompt):
             timeout=300
         )
 
-        result = response.json()
+        raw = response.text.splitlines()[0]   # take first JSON line
+        result = json.loads(raw)
 
-        if "response" in result:
-            output = result["response"]
-
-            output = re.sub(r"<.*?>", "", output)
-
-            return output.strip()
-
-        return "AI response error"
+        return result.get("response", "No response from AI")
 
     except Exception as e:
-        return f"AI request failed: {e}"
+        return f"AI request failed: {str(e)}"
 
 
 # -------------------------------

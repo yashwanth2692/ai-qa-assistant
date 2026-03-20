@@ -57,27 +57,24 @@ def analyze_website(url):
 def build_testcase_prompt(url, inputs, buttons):
 
     return f"""
-You are an automation engineer.
+You are a QA engineer.
 
-Generate a Playwright test script.
+Generate EXACTLY 5 manual test cases for this webpage.
 
 URL: {url}
-
 Inputs: {inputs}
 Buttons: {buttons}
 
-Return ONLY a table with columns:
+Return ONLY a table like this example:
 
 Test Case ID | Scenario | Steps | Expected Result
+TC_LOGIN_01 | Valid login | 1.Enter email 2.Enter password 3.Click login | User is redirected to dashboard
 
 Rules:
-- Generate exactly 5 test cases
-- Steps must be numbered
-- Do not include explanations
-- Do not include HTML tags
-- Expected result must clearly describe system behavior
+- Generate exactly 5 rows
+- Follow the same format as the example
+- Do not add explanations
 """
-
 
 # -------------------------------
 # AI SERVICE

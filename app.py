@@ -94,7 +94,7 @@ def call_ai(prompt):
                 "stream": False,
                 "options": {
                     "temperature": 0.1,
-                    "num_predict": 180,
+                    "num_predict": 240,
                     "top_p": 0.9
                 }
             },
